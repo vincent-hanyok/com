@@ -1,7 +1,7 @@
 // routes/characters.js
-const express = require('express');
+import express from 'express';
+import Character from '../models/Character.js';
 const router = express.Router();
-const Character = require('../models/Character');
 
 // Create a new character
 router.post('/', async (req, res) => {
@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
 });
 
 // Get all characters
-router.get('/', async (req, res) => {
+router.get('/', async (_, res) => {
   const characters = await Character.find();
   res.send(characters);
 });
@@ -34,4 +34,4 @@ router.delete('/:id', async (req, res) => {
   res.status(204).send();
 });
 
-module.exports = router;
+export default router;

@@ -1,5 +1,5 @@
 // models/Character.js
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const characterSchema = new mongoose.Schema({
   name: String,
@@ -15,4 +15,4 @@ const characterSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Character', characterSchema);
+export default mongoose.model('Character', characterSchema);

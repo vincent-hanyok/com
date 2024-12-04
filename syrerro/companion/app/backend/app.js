@@ -1,8 +1,8 @@
 // backend/app.js
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const characterRouter = require('./routes/characters');
+import express from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import characterRouter from './routes/characters.js';
 
 const app = express();
 
@@ -26,3 +26,5 @@ const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+export default app;
