@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive Solar System</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Set up the scene, camera, and renderer
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Create the sun
+        const sunGeometry = new THREE.SphereGeometry(1, 32, 32);
+        const sunMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+        const sun = new THREE.Mesh(sunGeometry, sunMaterial);
+        scene.add(sun);
+
+        // Create mercury
+        const mercuryGeometry = new THREE.SphereGeometry(1, 32, 32);
+        const mercuryMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+        const mercury = new THREE.Mesh(mercuryGeometry, mercuryMaterial);
+        mercury.position.x = 10;
+        scene.add(mercury);
+
+        // Create venus
+        const venusGeometry = new THREE.SphereGeometry(1, 32, 32);
+        const venusMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const venus = new THREE.Mesh(venusGeometry, venusMaterial);
+        venus.position.x = 20;
+        scene.add(venus);
+
+        // Create earth
+        const earthGeometry = new THREE.SphereGeometry(1, 32, 32);
+        const earthMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+        const earth = new THREE.Mesh(earthGeometry, earthMaterial);
+        earth.position.x = 30;
+        scene.add(earth);
+
+        // Set the camera position
+        camera.position.z = 60;
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Rotate the planets around the sun
+            mercury.position.x = 6 * Math.sin(Date.now() * 0.003);
+            mercury.position.z = 6 * Math.cos(Date.now() * 0.003);
+
+            venus.position.y = 9 * Math.sin(Date.now() * 0.002);
+            venus.position.x = 9 * Math.cos(Date.now() * 0.002);
+
+            earth.position.x = 12 * Math.sin(Date.now() * 0.001);
+            earth.position.y = 12 * Math.cos(Date.now() * 0.001);
+
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
+</body>
+
+</html>
